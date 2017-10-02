@@ -47,10 +47,10 @@ exports.author_create_post = function(req, res, next) {
     req.checkBody('first_name', 'First name must be specified.').notEmpty(); //We won't force Alphanumeric, because people might have spaces.
     req.checkBody('family_name', 'Family name must be specified.').notEmpty();
     req.checkBody('family_name', 'Family name must be alphanumeric text.').isAlpha();
-    req.checkBody('date_of_birth', 'Invalid date');
-    req.checkBody('date_of_death', 'Invalid date');
+    req.checkBody('date_of_birth', 'Invalid date').optional({ checkFalsy: true });
+    req.checkBody('date_of_death', 'Invalid date').optional({ checkFalsy: true });
 
-//    req.checkBody('date_of_birth', 'Invalid date').optional({ checkFalsy: true }).isDate(); 
+//    req.checkBody('date_of_birth', 'Invalid date').optional({ checkFalsy: true }).isDate();
   //  req.checkBody('date_of_death', 'Invalid date').optional({ checkFalsy: true }).isDate();
 
     req.sanitize('first_name').escape();
@@ -159,8 +159,10 @@ exports.author_update_post = function(req, res, next) {
     req.checkBody('first_name', 'First name must be specified.').notEmpty();
     req.checkBody('family_name', 'Family name must be specified.').notEmpty();
     req.checkBody('family_name', 'Family name must be alphanumeric text.').isAlpha();
-    req.checkBody('date_of_birth', 'Invalid date').optional({ checkFalsy: true }).isDate();
-    req.checkBody('date_of_death', 'Invalid date').optional({ checkFalsy: true }).isDate();
+    req.checkBody('date_of_birth', 'Invalid date').optional({ checkFalsy: true });
+    req.checkBody('date_of_death', 'Invalid date').optional({ checkFalsy: true });
+  //  req.checkBody('date_of_birth', 'Invalid date').optional({ checkFalsy: true }).isDate();
+//    req.checkBody('date_of_death', 'Invalid date').optional({ checkFalsy: true }).isDate();
     req.sanitize('first_name').escape();
     req.sanitize('family_name').escape();
     req.sanitize('first_name').trim();
