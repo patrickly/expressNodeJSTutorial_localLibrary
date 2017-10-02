@@ -22,8 +22,13 @@ BookInstanceSchema
 BookInstanceSchema
 .virtual('due_back_formatted')
 .get(function () {
-//  return moment(this.due_back).format('MMMM Do, YYYY');
-  return this.date_of_birth ? moment(this.date_of_birth).format('YYYY-MM-DD') : '';
+  return moment(this.due_back).format('MMMM Do, YYYY');
+});
+
+BookInstanceSchema
+.virtual('due_back_yyyy_mm_dd')
+.get(function () {
+  return moment(this.due_back).format('YYYY-MM-DD');
 });
 
 
